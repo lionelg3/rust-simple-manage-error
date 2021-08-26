@@ -5,7 +5,10 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 #[error("Err de fichier")]
-struct FichierError;
+struct FichierError {
+    #[from]
+    source: Error
+}
 
 // impl Display for FichierError {
 //     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
@@ -38,7 +41,7 @@ fn action(buff :String) -> Result<String, FichierError> {
     let mut f = match File::open("hello.txt") {
         Ok(f) => f,
         Err(a_error) => {
-            return Err(FichierError {});
+            return Err(FichierError {source: a_error});
         }
     };
     f.write_all(buff.as_bytes());
