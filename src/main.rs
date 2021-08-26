@@ -1,20 +1,23 @@
 use std::fmt::{Debug, Display, Formatter};
 use std::fs::File;
 use std::io::{Error, Write};
+use thiserror::Error;
 
+#[derive(Debug, Error)]
+#[error("Err de fichier")]
 struct FichierError;
 
-impl Display for FichierError {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Erreur de fichier")
-    }
-}
-
-impl Debug for FichierError {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Debug: Erreur de fichier")
-    }
-}
+// impl Display for FichierError {
+//     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+//         write!(f, "Erreur de fichier")
+//     }
+// }
+//
+// impl Debug for FichierError {
+//     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+//         write!(f, "Debug: Erreur de fichier")
+//     }
+// }
 
 fn main() {
     println!("Start");
