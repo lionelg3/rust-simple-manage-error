@@ -2,6 +2,7 @@ use std::fmt::{Debug, Display, Formatter};
 use std::fs::File;
 use std::io::{Error, Write};
 use thiserror::Error;
+use anyhow::Result;
 
 #[derive(Debug, Error)]
 #[error("Err de fichier")]
@@ -10,7 +11,7 @@ struct FichierError {
     source: Error
 }
 
-fn main() -> Result<(), FichierError> {
+fn main() -> Result<()> {
     println!("Start");
     let buff = String::from("Sample buffer data");
     action(buff)?;
