@@ -10,31 +10,12 @@ struct FichierError {
     source: Error
 }
 
-// impl Display for FichierError {
-//     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-//         write!(f, "Erreur de fichier")
-//     }
-// }
-//
-// impl Debug for FichierError {
-//     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-//         write!(f, "Debug: Erreur de fichier")
-//     }
-// }
-
-fn main() {
+fn main() -> Result<(), FichierError> {
     println!("Start");
     let buff = String::from("Sample buffer data");
-    match action(buff) {
-        Ok(_) => {
-            println!("OK");
-        }
-        Err(e) => {
-            println!("KO {:?}", e);
-        }
-    }
-
+    action(buff)?;
     println!("Stop");
+    Ok(())
 }
 
 fn action(buff :String) -> Result<String, FichierError> {
